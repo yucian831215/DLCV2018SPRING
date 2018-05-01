@@ -1,6 +1,8 @@
 import os
 import argparse
 
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
+
 import numpy as np
 import matplotlib.pyplot as plt
 
