@@ -55,10 +55,9 @@ def loss_graph():
 	plt.savefig(os.path.join(output_path, "fig1_2.jpg"))
 	plt.close()
 
-def reconstructed_imgage(image_list, path=test_path):
+def reconstructed_imgage(image_list, path):
 	vae_model = VAE_model(64, 64, 3)
 	vae_model.load_weights(weight_path, by_name=True)
-
 	test_image_num = 10
 	col_num = test_image_num + 1
 
@@ -88,7 +87,7 @@ def reconstructed_imgage(image_list, path=test_path):
 	plt.savefig(os.path.join(output_path, "fig1_3.jpg"))
 	plt.close()
 
-def compute_entire_mse(image_list, path=test_path):
+def compute_entire_mse(image_list, path):
 	vae_model = VAE_model(64, 64, 3)
 	vae_model.load_weights(weight_path, by_name=True)
 
@@ -133,7 +132,7 @@ def random_generated_image():
 	plt.savefig(os.path.join(output_path, "fig1_4.jpg"))
 	plt.close()
 
-def tSNE_plot_points(image_list, path=test_path):
+def tSNE_plot_points(image_list, path):
 	encoder_model = Encoeder_model(64, 64, 3)
 	encoder_model.load_weights(weight_path, by_name=True)
 	
@@ -311,8 +310,8 @@ if __name__ == '__main__':
 
 	test_image_list = read_image_name(test_path)
 	print("====================== Processing rconstructed ======================")
-	reconstructed_imgage(test_image_list)
-	mse, normal_mse = compute_entire_mse(test_image_list)
+	reconstructed_imgage(test_image_list, test_path)
+	mse, normal_mse = compute_entire_mse(test_image_list, test_path)
 	print("MSE: {}\nNormalization_MSE: {}".format(mse, normal_mse))
 	print("=======================       Finished        =======================")
 
@@ -321,5 +320,5 @@ if __name__ == '__main__':
 	print("=======================       Finished        =======================")
 
 	print("========================== Processing tSNE ==========================")
-	tSNE_plot_points(test_image_list)
+	tSNE_plot_points(test_image_list, test_path)
 	print("=======================       Finished        =======================")

@@ -109,15 +109,15 @@ def test_process_image():
 	plt.close()
 
 if __name__ == '__main__':
-	# parser = argparse.ArgumentParser()
-	# parser.add_argument('-m', '--model', help='model path', type=str)
-	# parser.add_argument('-o', '--outputs', help='output dataset directory', default='./output', type=str)
-	# args = parser.parse_args()
+	parser = argparse.ArgumentParser()
+	parser.add_argument('-m', '--model', help='model path', type=str)
+	parser.add_argument('-o', '--outputs', help='output dataset directory', default='./output', type=str)
+	args = parser.parse_args()
 
-	# generator_path = args.model
-	# output_path = args.outputs
+	generator_path = args.model
+	output_path = args.outputs
 
-	# print("---------------------- ACGAN processing ...... ----------------------")
+	print("---------------------- ACGAN processing ...... ----------------------")
 
 	print("======================= Processing loss graph =======================")
 	loss_graph()
