@@ -23,40 +23,48 @@ def read_image_name(path):
 	return sat_file_list
 
 def process_image(img):
-	color_result = np.argmax(img, axis=-1)
+	color_result = np.argmax(img[0], axis=-1)
 
 	output_result = np.zeros((512, 512, 3), dtype=np.uint8)
 	
-	for row in range(color_result.shape[1]):
-		for col in range(color_result.shape[2]):
-			if color_result[0][row][col] == 0:
-				output_result[row][col][0] = 0
-				output_result[row][col][1] = 255
-				output_result[row][col][2] = 255
-			elif color_result[0][row][col] == 1:
-				output_result[row][col][0] = 255
-				output_result[row][col][1] = 255
-				output_result[row][col][2] = 0
-			elif color_result[0][row][col] == 2:
-				output_result[row][col][0] = 255
-				output_result[row][col][1] = 0
-				output_result[row][col][2] = 255
-			elif color_result[0][row][col] == 3:
-				output_result[row][col][0] = 0
-				output_result[row][col][1] = 255
-				output_result[row][col][2] = 0
-			elif color_result[0][row][col] == 4:
-				output_result[row][col][0] = 0
-				output_result[row][col][1] = 0
-				output_result[row][col][2] = 255
-			elif color_result[0][row][col] == 5:
-				output_result[row][col][0] = 255
-				output_result[row][col][1] = 255
-				output_result[row][col][2] = 255
-			elif color_result[0][row][col] == 6:
-				output_result[row][col][0] = 0
-				output_result[row][col][1] = 0
-				output_result[row][col][2] = 0
+	# for row in range(color_result.shape[1]):
+	# 	for col in range(color_result.shape[2]):
+	# 		if color_result[0][row][col] == 0:
+	# 			output_result[row][col][0] = 0
+	# 			output_result[row][col][1] = 255
+	# 			output_result[row][col][2] = 255
+	# 		elif color_result[0][row][col] == 1:
+	# 			output_result[row][col][0] = 255
+	# 			output_result[row][col][1] = 255
+	# 			output_result[row][col][2] = 0
+	# 		elif color_result[0][row][col] == 2:
+	# 			output_result[row][col][0] = 255
+	# 			output_result[row][col][1] = 0
+	# 			output_result[row][col][2] = 255
+	# 		elif color_result[0][row][col] == 3:
+	# 			output_result[row][col][0] = 0
+	# 			output_result[row][col][1] = 255
+	# 			output_result[row][col][2] = 0
+	# 		elif color_result[0][row][col] == 4:
+	# 			output_result[row][col][0] = 0
+	# 			output_result[row][col][1] = 0
+	# 			output_result[row][col][2] = 255
+	# 		elif color_result[0][row][col] == 5:
+	# 			output_result[row][col][0] = 255
+	# 			output_result[row][col][1] = 255
+	# 			output_result[row][col][2] = 255
+	# 		elif color_result[0][row][col] == 6:
+	# 			output_result[row][col][0] = 0
+	# 			output_result[row][col][1] = 0
+	# 			output_result[row][col][2] = 0
+
+	output_result[color_result == 0] = [0, 255, 255]
+	output_result[color_result == 1] = [255, 255, 0]
+	output_result[color_result == 2] = [255, 0, 255]
+	output_result[color_result == 3] = [0, 255, 0]
+	output_result[color_result == 4] = [0, 0, 255]
+	output_result[color_result == 5] = [255, 255, 255]
+	output_result[color_result == 6] = [0, 0, 0]
 				
 	return output_result
 
